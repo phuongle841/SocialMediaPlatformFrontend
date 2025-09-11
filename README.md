@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+src/
+├── assets/
+│   ├── images/
+│   ├── fonts/
+│   └── icons/
+├── components/
+│   ├── common/ (reusable, generic UI components like Button, Input, Modal)
+│   ├── layout/ (components defining page structure like Header, Footer, Sidebar)
+│   └── specific/ (components used in a particular feature but not globally reusable)
+├── features/
+│   ├── auth/ (all files related to authentication: components, hooks, services, contexts)
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── context/
+│   ├── userProfile/ (all files related to user profiles)
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── services/
+│   └── products/ (all files related to product management)
+│       ├── components/
+│       ├── hooks/
+│       └── services/
+├── hooks/ (reusable custom hooks not tied to a specific feature)
+├── pages/ (top-level components representing distinct pages in the application)
+│   ├── HomePage.jsx
+│   ├── AboutPage.jsx
+│   └── ProductDetailsPage.jsx
+├── services/ (API interaction and data fetching logic)
+│   ├── authService.js
+│   ├── userService.js
+│   └── productService.js
+├── store/ (global state management, e.g., Redux, Zustand)
+│   ├── index.js
+│   ├── reducers/
+│   ├── actions/
+│   └── selectors/
+├── styles/
+│   ├── global.css
+│   ├── variables.css
+│   └── mixins.css
+├── utils/ (utility functions and helpers)
+│   ├── helpers.js
+│   ├── validators.js
+│   └── constants.js
+├── App.jsx (main application component)
+├── index.js (entry point of the application)
+└── routes.js (routing configuration)
 ```
