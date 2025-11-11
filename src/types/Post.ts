@@ -1,5 +1,9 @@
-export interface Post {
+export interface PostDTO {
   postId: number;
-  name: string;
-  foo: () => void;
+  content: string;
+  ImageUrl: string;
+  CreatedAt: Date;
+  LikesCount: number;
+  CommentsCount: number;
+  ProfileId: string;
 }

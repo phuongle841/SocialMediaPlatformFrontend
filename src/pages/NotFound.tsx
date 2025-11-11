@@ -1,10 +1,9 @@
-import type React from "react";
-
-export const NotFound: React.FC = () => {
+export const NotFound = () => {
   return (
-    <div>
-      <h1>This is the error page</h1>
-    </div>
+    <>
+      <div>
+        <h1>This is the error page</h1>
+      </div>
+    </>
   );
 };
-
