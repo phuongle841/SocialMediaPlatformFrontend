@@ -1,6 +1,7 @@
 import type IPostService from "../Interfaces/IPostService";
 
 const url: string = import.meta.env.VITE_API_URL + "/Post";
+// redesign to dependency injection fetch
 
 const PostService: IPostService = {
   fetch: async (options) => {
