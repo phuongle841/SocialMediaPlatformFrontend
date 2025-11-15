@@ -1,4 +1,3 @@
-import { PostServiceMock } from "../../services/Implements/PostServiceMock";
 import type IPostService from "../../services/Interfaces/IPostService";
 import { HomePage } from "./HomePage";
 
