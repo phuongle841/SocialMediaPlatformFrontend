@@ -10,26 +10,7 @@ export function HomePage(PostService: IPostService) {
   const postId: number = 4;
   const POST_PER_REQUEST: number = 10;
   const SKIP: number = 10;
-  const [data, setData] = useState([
-    {
-      postId: 0,
-      content: "this is the content of the post",
-      ImageUrl: "",
-      CreatedAt: new Date(),
-      LikesCount: 0,
-      CommentsCount: 0,
-      ProfileId: "",
-    },
-    {
-      postId: 2,
-      content: "this is the content of the post",
-      ImageUrl: "",
-      CreatedAt: new Date(),
-      LikesCount: 0,
-      CommentsCount: 0,
-      ProfileId: "",
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const options: fetchOptions = {
@@ -45,9 +26,9 @@ export function HomePage(PostService: IPostService) {
     <>
       <div className="container min-h-10 aspect-auto">
         <Header></Header>
-        <div className="flex bg-zinc-200 gap-x-4 shrink-0  p-6 ">
+        <div className="flex p-2">
           <SettingComp></SettingComp>
-          <div className="flex flex-col gap-4 bg-blue-500">
+          <div className="flex-col p-2 border">
             {data != null &&
               data.map((e: PostDTO) => <PostComponent {...e}></PostComponent>)}
           </div>

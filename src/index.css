@@ -5,8 +5,8 @@
   font-weight: 400;
 
   box-sizing: border-box;
-  padding: 0%;
-  margin: 0%;
+  /* padding: 0%; */
+  /* margin: 0%; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,10 +56,10 @@ a {
 
 /* This will apply to unvisited links */
 a:link {
-  color: var(--text-color-default);
+  color: var(--color-blue-600);
 }
 
 /* And you guessed it, this applies to all links the user has clicked on */
 a:visited {
-  color: var(--text-color-default);
+  color: var(--color-purple-600);
 }
