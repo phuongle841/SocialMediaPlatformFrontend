@@ -9,7 +9,7 @@ function Header() {
   return (
     <header className="flex justify-evenly">
       {HeaderButtons.map((e) => (
-        <LinkButton {...e}></LinkButton>
+        <LinkButton key={e.name} {...e}></LinkButton>
       ))}
       <NotificationComponent></NotificationComponent>
     </header>

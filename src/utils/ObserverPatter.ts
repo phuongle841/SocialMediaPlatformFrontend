@@ -1,0 +1,9 @@
+export interface Subject<T> {
+  registerObserver: (o: Observer<T>) => void;
+  removeObserver: (o: Observer<T>) => void;
+  notifyObserver: () => void;
+}
+
+export interface Observer<T> {
+  notify: (data: T) => void;
+}

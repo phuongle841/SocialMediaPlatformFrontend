@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { PostComponent } from "../../components/PostComponent";
+import { setup } from "../../store/Post";
+import { useDispatch, useSelector } from "react-redux";
 import type { PostDTO } from "../../types/Post";
 import type { fetchOptions } from "../../services/Interfaces/IPostService";
 import Header from "../../components/Header";
@@ -11,6 +13,11 @@ export function HomePage(PostService: IPostService) {
   const POST_PER_REQUEST: number = 10;
   const SKIP: number = 10;
   const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setup(data));
+  }, [data]);
 
   useEffect(() => {
     const options: fetchOptions = {
@@ -30,7 +37,9 @@ export function HomePage(PostService: IPostService) {
           <SettingComp></SettingComp>
           <div className="flex-col p-2 border">
             {data != null &&
-              data.map((e: PostDTO) => <PostComponent {...e}></PostComponent>)}
+              data.map((e: PostDTO) => (
+                <PostComponent {...e} key={e.postId}></PostComponent>
+              ))}
           </div>
           <ContactComp></ContactComp>
         </div>
