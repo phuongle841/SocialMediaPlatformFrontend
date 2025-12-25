@@ -1,9 +1,11 @@
+import type { ProfileDTO } from "./Profile";
+
 export interface PostDTO {
   postId: number;
   content: string;
   ImageUrl: string;
-  CreatedAt: Date;
+  CreatedAt: string;
   LikesCount: number;
   CommentsCount: number;
-  ProfileId: string;
+  profile: ProfileDTO;
 }

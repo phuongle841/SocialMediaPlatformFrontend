@@ -1,38 +1,23 @@
 import type { PostDTO } from "../types/Post";
-import type { RootState } from "../store";
-import { like, comment, share } from "../store/Post";
-import { useDispatch, useSelector } from "react-redux";
+import { InteractComponent } from "./PostComponents/InteractComponents";
+import { PostAvatar } from "./PostComponents/PostAvatar";
+import { LinkButton } from "./Button";
 
 export const PostComponent = (post: PostDTO) => {
-  let content: String[] = post.content.split(" ");
-  const value = useSelector((state: RootState) => state.post);
-  const dispatch = useDispatch();
   return (
-    <div className="PostComponent border p-2 m-2">
-      <button onClick={() => dispatch(like(post))}>
-        Click to change post value
-      </button>
-      <button className="">{post.postId}</button>
-      <div></div>
-      <span>Posted at {post.CreatedAt.toString()}</span>
-      <div></div>
-      <span>{content}</span>
-      <div className="Images">
-        <img src={post.ImageUrl} alt="" />
-      </div>
-      <div className="Engagement flex justify-between">
-        <div className="Like">
-          <div>Likes - {post.LikesCount}</div>
-          <button>Like</button>
+    <div className="PostComponent border p-2 m-2 flex">
+      <PostAvatar {...post.profile}></PostAvatar>
+      <div>
+        <p className="hover:cursor-pointer ">
+          <span className="font-semibold">{post.profile.DisplayName}</span>.
+          <span>@{post.profile.Email}-</span>
+          <span>Posted at {post.CreatedAt}</span>
+        </p>
+        <p>{post.content}</p>
+        <div className="Images">
+          <img src={post.ImageUrl} alt="" />
         </div>
-        <div className="Comment">
-          <div>Comment- {post.CommentsCount}</div>
-          <button>Comment</button>
-        </div>
-        <div className="Share">
-          <div>Share- {post.LikesCount}</div>
-          <button>Share</button>
-        </div>
+        <InteractComponent {...post}></InteractComponent>
       </div>
     </div>
   );

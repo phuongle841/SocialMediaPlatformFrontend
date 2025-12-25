@@ -1,47 +1,50 @@
-import { useEffect, useState } from "react";
 import { PostComponent } from "../../components/PostComponent";
-import { setup } from "../../store/Post";
 import { useDispatch, useSelector } from "react-redux";
 import type { PostDTO } from "../../types/Post";
-import type { fetchOptions } from "../../services/Interfaces/IPostService";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import type IPostService from "../../services/Interfaces/IPostService";
+import type { AppDispath, RootState } from "../../store";
+import { useEffect } from "react";
+import { fetchPosts } from "../../store/Post/PostThunk";
 
-export function HomePage(PostService: IPostService) {
-  const postId: number = 4;
-  const POST_PER_REQUEST: number = 10;
-  const SKIP: number = 10;
-  const [data, setData] = useState([]);
-  const dispatch = useDispatch();
+interface HomePageProp {
+  PostService: IPostService;
+}
+
+export function HomePage({ PostService }: HomePageProp) {
+  const dispatch = useDispatch<AppDispath>();
+  const { posts, loading } = useSelector((state: RootState) => state.post);
 
   useEffect(() => {
-    dispatch(setup(data));
-  }, [data]);
+    dispatch(
+      fetchPosts({
+        service: PostService,
+        options: {
+          id: 0,
+          take: 10,
+          skip: 10,
+        },
+      })
+    );
+  }, [dispatch, PostService]);
 
-  useEffect(() => {
-    const options: fetchOptions = {
-      id: postId,
-      take: POST_PER_REQUEST,
-      skip: SKIP,
-      setData: setData,
-    };
-    PostService.fetch(options);
-  }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
-      <div className="container min-h-10 aspect-auto">
+      <div className="container min-w-lg aspect-auto">
         <Header></Header>
-        <div className="flex p-2">
-          <SettingComp></SettingComp>
-          <div className="flex-col p-2 border">
-            {data != null &&
-              data.map((e: PostDTO) => (
-                <PostComponent {...e} key={e.postId}></PostComponent>
-              ))}
+        <div className="flex">
+          <SettingPanel></SettingPanel>
+          <div className="flex-col flex-auto p-2 border-r-1 border-l-1 max-w-[600px]">
+            {posts.map((e: PostDTO) => (
+              <PostComponent {...e} key={e.postId}></PostComponent>
+            ))}
           </div>
-          <ContactComp></ContactComp>
+          <TrendingPanel></TrendingPanel>
         </div>
         <Footer></Footer>
       </div>
@@ -49,18 +52,18 @@ export function HomePage(PostService: IPostService) {
   );
 }
 
-function SettingComp() {
+function SettingPanel() {
   return (
-    <>
+    <div className="SettingPanel flex-1">
       <h1>Setting and profile</h1>
-    </>
+    </div>
   );
 }
 
-function ContactComp() {
+function TrendingPanel() {
   return (
-    <>
+    <div className="TrendingPanel flex-1">
       <h1>Contact</h1>
-    </>
+    </div>
   );
 }

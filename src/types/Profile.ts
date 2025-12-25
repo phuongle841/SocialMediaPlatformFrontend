@@ -1,10 +1,9 @@
 export interface ProfileDTO {
   ProfileId: number;
   Email: string;
-  FirstName: string;
-  LastName: string;
+  DisplayName: string;
   ProfilePicture: string;
   Bio: string;
-  DateOfBirth: Date;
+  DateOfBirth: string;
   IsActive: boolean;
 }

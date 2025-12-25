@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import notificationReducer from "./Notification";
-import postReducer from "./Post";
+import postReducer from "./Post/Post";
 
 export const store = configureStore({
   reducer: { notification: notificationReducer, post: postReducer },

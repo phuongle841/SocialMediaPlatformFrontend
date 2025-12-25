@@ -7,7 +7,7 @@ function Header() {
     return { name: e.name, patch: e.path, icon: null };
   });
   return (
-    <header className="flex justify-evenly">
+    <header className="flex border p-2">
       {HeaderButtons.map((e) => (
         <LinkButton key={e.name} {...e}></LinkButton>
       ))}
