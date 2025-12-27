@@ -1,7 +1,6 @@
 import type { PostDTO } from "../types/Post";
 import { InteractComponent } from "./PostComponents/InteractComponents";
 import { PostAvatar } from "./PostComponents/PostAvatar";
-import { LinkButton } from "./Button";
 
 export const PostComponent = (post: PostDTO) => {
   return (

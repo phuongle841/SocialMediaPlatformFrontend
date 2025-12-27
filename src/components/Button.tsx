@@ -1,16 +1,20 @@
+import React from "react";
+import type { FC } from "react";
 import { NavLink } from "react-router-dom";
 export interface Button {
   name: string;
   patch: string;
-  icon: any;
+  Icon: React.ElementType;
 }
-export function LinkButton(button: Button) {
+export function LinkButton({ name, patch, Icon }: Button) {
   return (
-    <button className="border-2 px-2">
-      <NavLink to={button.patch}>
-        {button.icon}
-        {button.name}
-      </NavLink>
-    </button>
+    <div className="flex ">
+      <button className="border border-transparent p-3 rounded-4xl hover:bg-[#44444E]">
+        <NavLink className="" to={patch}>
+          <Icon></Icon>
+          {name}
+        </NavLink>
+      </button>
+    </div>
   );
 }
