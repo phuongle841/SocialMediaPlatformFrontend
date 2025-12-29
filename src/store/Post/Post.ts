@@ -25,12 +25,13 @@ export const postSlice = createSlice({
     commentPost: (state, action: PayloadAction<PostDTO>) => {
       const post = state.posts.find((p) => p.postId === action.payload.postId);
       if (post) {
-        post.CommentsCount++;
+        post.CommentsCount= (post.CommentsCount ?? 0) + 1;
       }
     },
     sharePost(state, action: PayloadAction<PostDTO>): void {
       const post = state.posts.find((p) => p.postId === action.payload.postId);
       if (post) {
+        post.CommentsCount= (post.CommentsCount ?? 0) + 1;
       }
     },
   },

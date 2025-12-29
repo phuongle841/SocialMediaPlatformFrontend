@@ -8,9 +8,16 @@ interface FetchPostsArgs {
   options: fetchOptions;
 }
 
-export const fetchPosts = createAsyncThunk<
-  PostDTO[], // return type
-  FetchPostsArgs // argument type
->("post/fetchPosts", async ({ service, options }) => {
-  return await service.fetch(options);
-});
+export const fetchPosts = createAsyncThunk<PostDTO[], FetchPostsArgs>(
+  "post/fetchPosts",
+  async ({ service, options }) => {
+    return await service.FetchPosts(options);
+  }
+);
+
+const loadPost = createAsyncThunk<PostDTO, FetchPostsArgs>(
+  "post/loadPost",
+  async ({ service, options }) => {
+    return await service.LoadPost();
+  }
+);

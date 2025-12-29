@@ -2,23 +2,18 @@ import { PostComponent } from "../../components/PostComponent";
 import { useDispatch, useSelector } from "react-redux";
 import type { PostDTO } from "../../types/Post";
 import type IPostService from "../../services/Interfaces/IPostService";
-import type { AppDispath, RootState } from "../../store";
+import type { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
 import { fetchPosts } from "../../store/Post/PostThunk";
 import { LinkButton, type Button } from "../../components/Button";
-import HomeIcon from "@mui/icons-material/Home";
-import ExploreIcon from "@mui/icons-material/Explore";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import EmailIcon from "@mui/icons-material/Email";
-import PeopleIcon from "@mui/icons-material/People";
+import { SettingOptions } from "./SettingOptions";
 
 interface HomePageProp {
   PostService: IPostService;
 }
 
 export function HomePage({ PostService }: HomePageProp) {
-  const dispatch = useDispatch<AppDispath>();
+  const dispatch = useDispatch<AppDispatch>();
   const { posts, loading } = useSelector((state: RootState) => state.post);
 
   useEffect(() => {
@@ -52,38 +47,7 @@ export function HomePage({ PostService }: HomePageProp) {
 }
 
 function SettingPanel() {
-  const buttons: Array<Button> = [
-    {
-      name: "Home",
-      patch: "",
-      Icon: HomeIcon,
-    },
-    {
-      name: "Explore",
-      patch: "",
-      Icon: ExploreIcon,
-    },
-    {
-      name: "Notification",
-      patch: "",
-      Icon: NotificationsNoneIcon,
-    },
-    {
-      name: "Follow",
-      patch: "",
-      Icon: BookmarkIcon,
-    },
-    {
-      name: "Chat",
-      patch: "",
-      Icon: EmailIcon,
-    },
-    {
-      name: "Community",
-      patch: "",
-      Icon: PeopleIcon,
-    },
-  ];
+  const buttons: Array<Button> = SettingOptions;
   return (
     <div className="SettingPanel text-lg">
       <div className="flex flex-col ">
@@ -91,8 +55,9 @@ function SettingPanel() {
           <LinkButton key={e.name} {...e}></LinkButton>
         ))}
       </div>
-      <p>More...</p>
-      <p>Post</p>
+      <button>
+        <p>Post</p>
+      </button>
       <p>Phuongleminh841@gmail.com</p>
     </div>
   );
